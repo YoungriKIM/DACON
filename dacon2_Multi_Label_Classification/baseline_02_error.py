@@ -69,8 +69,8 @@ class MnistDataset(Dataset):
 
 
 transforms_train = transforms.Compose([
-    transforms.RandomHorizontalFlip(p=0.5),
-    transforms.RandomVerticalFlip(p=0.5),
+    # transforms.RandomHorizontalFlip(p=0.5),
+    # transforms.RandomVerticalFlip(p=0.5),
     transforms.ToTensor(),
     transforms.Normalize(
         [0.485, 0.456, 0.406],
@@ -86,11 +86,11 @@ transforms_test = transforms.Compose([
     )
 ])
 
-trainset = MnistDataset('D:/aidata/dacon12/train', 'D:/aidata/dacon12/dirty_mnist_2nd_answer.csv', transforms_train)
+trainset = MnistDataset('D:/aidata/dacon12/cleartrain', 'D:/aidata/dacon12/dirty_mnist_2nd_answer.csv', transforms_train)
 testset = MnistDataset('D:/aidata/dacon12/test', 'D:/aidata/dacon12/sample_submission.csv', transforms_test)
 
-train_loader = DataLoader(trainset, batch_size=32, num_workers=4)
-test_loader = DataLoader(testset, batch_size=32, num_workers=4)
+train_loader = DataLoader(trainset, batch_size=16, num_workers=5)
+test_loader = DataLoader(testset, batch_size=16, num_workers=5)
 
 
 
@@ -175,5 +175,9 @@ if __name__ == '__main__':
             outputs.long().squeeze(0).detach().cpu().numpy()
 
     # 저장함
-    submit.to_csv('D:/aidata/dacon12/sub_save/base_01.csv', index=False)
+    submit.to_csv('D:/aidata/dacon12/sub_save/base_02.csv', index=False)
 
+
+# ==============================================
+# base_01.csv 기본 데이터로 진행 > dacon score: 0.7145538462
+# base_01.csv  >> canny+junho > batch_size=16, num_workers=5 > dacon score: 
