@@ -95,6 +95,7 @@ class MnistModel(nn.Module):
         return x
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+torch.backends.cudnn.enabled = False
 model = MnistModel().to(device)
 print(summary(model, input_size=(1, 3, 256, 256), verbose=0))
 
