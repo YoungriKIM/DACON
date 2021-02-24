@@ -1,6 +1,18 @@
 # 베이스라인 시도
 # https://dacon.io/competitions/official/235697/codeshare/2354?page=1&dtype=recent&ptype=pub
 
+# 했는데 에러발생
+# RuntimeError: CUDA out of memory. Tried to allocate 256.00 MiB \
+# (GPU 0; 11.00 GiB total capacity; 3.54 GiB already allocated; 106.93 MiB free; 3.57 GiB reserved in total by PyTorch)
+
+# 에러 해결하려고 이것저것 하는 파일
+
+# -----------------------------------------------------------
+import torch, gc
+gc.collect()
+torch.cuda.empty_cache()
+
+
 # 불러오기
 import os
 from typing import Tuple, Sequence, Callable
@@ -77,7 +89,7 @@ transforms_test = transforms.Compose([
 trainset = MnistDataset('D:/aidata/dacon12/train', 'D:/aidata/dacon12/dirty_mnist_2nd_answer.csv', transforms_train)
 testset = MnistDataset('D:/aidata/dacon12/test', 'D:/aidata/dacon12/sample_submission.csv', transforms_test)
 
-train_loader = DataLoader(trainset, batch_size=256, num_workers=8)
+train_loader = DataLoader(trainset, batch_size=32, num_workers=4)
 test_loader = DataLoader(testset, batch_size=32, num_workers=4)
 
 
@@ -134,7 +146,7 @@ if __name__ == '__main__':
                 # 매개변수 갱신함
                 optimizer.step()
             
-                # 10에포치 마다 로스와 액큐러시를 출력함
+                # 10에폭 마다 로스와 액큐러시를 출력함
                 if (i+1) % 10 == 0:
                     outputs = outputs > 0.5
                     acc = (outputs == targets).float().mean()
@@ -165,5 +177,3 @@ if __name__ == '__main__':
     # 저장함
     submit.to_csv('D:/aidata/dacon12/sub_save/base_01.csv', index=False)
 
-# 에러 발생
-# RuntimeError: CUDA out of memory. Tried to allocate 256.00 MiB (GPU 0; 11.00 GiB total capacity; 3.54 GiB already allocated; 106.93 MiB free; 3.57 GiB reserved in total by PyTorch)
