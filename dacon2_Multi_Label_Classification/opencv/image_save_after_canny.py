@@ -30,7 +30,7 @@ cv2.imwrite('../dacon12/data/newtrain/00000.jpg', img2)
 number = 50000
 
 for a in np.arange(0,number):
-    Img = cv2.imread('D:/aidata/dacon12/train/' + str(a).zfill(5) + '.png', cv2.IMREAD_GRAYSCALE)
+    Img = cv2.imread('../dacon12/data/newtrain/' + str(a).zfill(5) + '.png', cv2.IMREAD_GRAYSCALE)
     #254보다 작고 0이아니면 0으로 만들어주기
     img2 = np.where((Img <= 254) & (Img != 0), 0, Img)
     # 이미지 팽창
@@ -38,8 +38,11 @@ for a in np.arange(0,number):
     # 블러 적용, 노이즈 제거
     img2 = cv2.medianBlur(src=img2, ksize= 5)
     # canny
-    img2 = cv2.Canny(img2, 30, 70)
+    # img2 = cv2.Canny(img2, 30, 70)
 
-    cv2.imwrite('D:/aidata/dacon12/cleartrain/'+ str(a).zfill(5) + '.png', img2)
+    cv2.imwrite('../dacon12/data/newtrain/'+ str(a).zfill(5) + '.png', img2)
 
 print('done')
+
+# 집컴: 캐니까지 해서 저장
+# 학원컴: 캐니 안하고 저장
