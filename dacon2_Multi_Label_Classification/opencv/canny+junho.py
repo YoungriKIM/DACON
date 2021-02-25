@@ -22,6 +22,9 @@ x_df3 = cv2.dilate(x_df2, kernel=np.ones((2, 2), np.uint8), iterations=1)
 x_df4 = cv2.medianBlur(src=x_df3, ksize= 5)
 
 
+# 이미지 리쉐잎 -------------------------------------
+# 리쉐잎
+
 
 # 이전 파일 것
 canny = cv2.Canny(x_df4, 30, 70)

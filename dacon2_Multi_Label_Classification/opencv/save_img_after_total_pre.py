@@ -1,4 +1,5 @@
-# 이미지 자르기 시도2
+# 이미지 전처리 > 자르기 까지 한번에 되는 파일 (feat.혜지)
+# 용도에 맞게 아직 수정 안 함
 
 import cv2
 import numpy as np
@@ -9,7 +10,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 # 1. 노이즈부터 제거하자 (한수오빠 dacon_img_change.py 참고)
 # rect = (1,1,img.shape[0]-1,img.shape[1]-1)
-file_path = '../dacon12/data/train/00000.png'
+file_path = '../dacon12/data/train/50002.png'
 
 image = cv2.imread(file_path) # cv2.IMREAD_GRAYSCALE
 image = cv2.cvtColor(image, cv2.IMREAD_GRAYSCALE)
@@ -69,9 +70,11 @@ for i in range(len(contours_xy)):
     h = y_max-y_min
 
     img_trim = image_data[y:y+h, x:x+w]
-    cv2.imwrite(f'C:/Study/dacon/computer2/data/org_trim{i}.png', img_trim)
+    cv2.imwrite(f'../dacon12/data/splittrain/org_trim{i}.png', img_trim)
 
     # 잘랐다
     # 문제점 : 한 알파벳인데 끊겨서 외곽선이 두개로 나뉜다
 
-'''
+
+
+## 밥먹고 와서 옆에 메모한 것만 저장해서 a만뺴기~
