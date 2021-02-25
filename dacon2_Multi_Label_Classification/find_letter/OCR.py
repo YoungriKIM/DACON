@@ -3,12 +3,12 @@
 import cv2
 import numpy as np
 
-large = cv2.imread('../dacon12/data/newtrain/00015.png')
+large = cv2.imread('../dacon12/data/newtrain/00007.png')
 
 small = cv2.cvtColor(large, cv2.COLOR_BGR2GRAY)
 
 
-kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (10, 3))
+kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (15, 3))
 grad = cv2.morphologyEx(small, cv2.MORPH_GRADIENT, kernel)
 _, bw = cv2.threshold(grad, 0.0, 255.0, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
 kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (1, 1))
