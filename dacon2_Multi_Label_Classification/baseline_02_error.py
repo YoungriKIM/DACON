@@ -180,5 +180,9 @@ if __name__ == '__main__':
 
 # ==============================================
 # base_01.csv 기본 데이터로 진행 > dacon score: 0.7145538462
+<<<<<<< HEAD
+# base_02.csv  >> canny+junho > batch_size=16, num_workers=5 > dacon score: ing
+=======
 # base_02.csv  >> canny+junho > batch_size=16, num_workers=5 > dacon score: 
 # base_03.csv  >> junho > batch_size=16, num_workers=5 > dacon score: ing 하다가 멈춤 ㅎ
+>>>>>>> 2326206ecc62ccff8fed5081376cefde77736339
