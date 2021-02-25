@@ -30,7 +30,7 @@ cv2.imwrite('../dacon12/data/newtrain/00000.jpg', img2)
 number = 50000
 
 for a in np.arange(0,number):
-    Img = cv2.imread('../dacon12/data/train/' + str(a).zfill(5) + '.png', cv2.IMREAD_GRAYSCALE)
+    Img = cv2.imread('../dacon12/data/newtrain/' + str(a).zfill(5) + '.png', cv2.IMREAD_GRAYSCALE)
     #254보다 작고 0이아니면 0으로 만들어주기
     img2 = np.where((Img <= 254) & (Img != 0), 0, Img)
     # 이미지 팽창
