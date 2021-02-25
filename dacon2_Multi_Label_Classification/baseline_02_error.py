@@ -180,4 +180,4 @@ if __name__ == '__main__':
 
 # ==============================================
 # base_01.csv 기본 데이터로 진행 > dacon score: 0.7145538462
-# base_01.csv  >> canny+junho > batch_size=16, num_workers=5 > dacon score: 
+# base_02.csv  >> canny+junho > batch_size=16, num_workers=5 > dacon score: ing
