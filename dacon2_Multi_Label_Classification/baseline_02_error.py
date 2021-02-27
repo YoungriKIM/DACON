@@ -175,7 +175,7 @@ if __name__ == '__main__':
             outputs.long().squeeze(0).detach().cpu().numpy()
 
     # 저장함
-    submit.to_csv('../dacon12/data/save//base_03.csv', index=False)
+    submit.to_csv('../dacon12/data/save/base_03.csv', index=False)
 
 
 # ==============================================
