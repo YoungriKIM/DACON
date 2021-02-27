@@ -30,6 +30,8 @@ before1['letter'] = np.where(before1['letter'] != 'A', 0, before1['letter'])
 before1['letter'] = np.where(before1['letter'] == 'A', 1, before1['letter'])
 print(before1.head())
 
+
+'''
 # x, y 지정
 x_1 = before1.iloc[:,1: ]
 y_1 = before1['letter']
@@ -83,3 +85,4 @@ np.save('../dacon12/data/save/a_or_not_y.npy', arr=y)
 print('done')
 
 # 제너레이터부터 다음
+'''

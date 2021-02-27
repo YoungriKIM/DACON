@@ -175,7 +175,11 @@ if __name__ == '__main__':
             outputs.long().squeeze(0).detach().cpu().numpy()
 
     # 저장함
+<<<<<<< HEAD
     submit.to_csv('D:/aidata/dacon12/sub_save/base_04.csv', index=False)
+=======
+    submit.to_csv('../dacon12/data/save/base_03.csv', index=False)
+>>>>>>> 6db26d747320acdd1d763fca137b980b640f83fa
 
 
 # ==============================================

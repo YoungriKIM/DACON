@@ -86,6 +86,10 @@ from sklearn.metrics import r2_score
 R2 = r2_score(y_test, y_predict)
 print('R2: ', R2)
 
+from sklearn.metrics import f1_score
+f1 = f1_score(y_test, y_predict)
+print('f1_score: ', f1)
+
 #  ---------------------------------------------------------------------------------------------
 y_predict = model.predict(x_test[:30])
 print('y_predict_argmax: ', y_predict.argmax(axis=1)) 

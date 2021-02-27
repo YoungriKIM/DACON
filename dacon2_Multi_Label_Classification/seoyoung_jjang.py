@@ -27,11 +27,11 @@ torch.set_num_threads(1)
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 # ======================== Dacon Dataset Load ==========================
-labels_df = pd.read_csv('D:/aidata/dacon12/dirty_mnist_2nd_answer.csv')[:]
-imgs_dir = np.array(sorted(glob.glob('D:/aidata/dacon12/train/*')))[:]
+labels_df = pd.read_csv('../dacon12/data/dirty_mnist_2nd_answer.csv')[:]
+imgs_dir = np.array(sorted(glob.glob('../dacon12/data/train/*')))[:]
 labels = np.array(labels_df.values[:,1:])
 
-test_imgs_dir = np.array(sorted(glob.glob('D:/aidata/dacon12/test/*')))
+test_imgs_dir = np.array(sorted(glob.glob('../dacon12/data/test/*')))
 
 imgs=[]
 for path in tqdm(imgs_dir[:]):
@@ -74,9 +74,7 @@ class MnistDataset_v2(Dataset):
                 #test data augmentations
         self.aug = albumentations.Compose ([ 
                    albumentations.RandomResizedCrop (256, 256), 
-                    albumentations.Transpose (p = 0.5), 
-                    albumentations.HorizontalFlip (p = 0.5), 
-                    albumentations.VerticalFlip (p = 0.5)
+                    albumentations.Transpose (p = 0.5)
                     ], p = 1) 
         pass
     
@@ -133,7 +131,7 @@ class EfficientNet_MultiLabel(nn.Module):
 # ============== 데이터 분리====================================
 # 해당 코드에서는 1fold만 실행
 
-kf = KFold(n_splits=5, shuffle=True, random_state=42)
+kf = KFold(n_splits=3, shuffle=True, random_state=42)
 folds=[]
 for train_idx, valid_idx in kf.split(imgs):
     folds.append((train_idx, valid_idx))
@@ -141,7 +139,7 @@ for train_idx, valid_idx in kf.split(imgs):
 ### seed_everything(42)
 
 # 5개의 fold 모두 실행하려면 for문을 5번 돌리면 됩니다.
-for fold in range(5):
+for fold in range(3):
     model = EfficientNet_MultiLabel(in_channels=3).to(device)
 # model = nn.DataParallel(model)
     train_idx = folds[fold][0]
@@ -156,8 +154,13 @@ for fold in range(5):
         transforms.ToTensor(),
         ])
 
+<<<<<<< HEAD
     epochs=12
     batch_size=24       # 자신의 VRAM에 맞게 조절해야 OOM을 피할 수 있습니다.
+=======
+    epochs=20
+    batch_size=24        # 자신의 VRAM에 맞게 조절해야 OOM을 피할 수 있습니다.
+>>>>>>> 6db26d747320acdd1d763fca137b980b640f83fa
     
     # Data Loader
     train_dataset = MnistDataset_v2(imgs = imgs[train_idx], labels=labels[train_idx], transform=train_transform)
@@ -223,7 +226,7 @@ for fold in range(5):
             valid_accuracy.append(np.mean(valid_batch_accuracy))
             
         if np.mean(valid_batch_accuracy)>valid_best_accuracy:
-            torch.save(model.state_dict(), 'D:/aidata/dacon12/save/EfficientNetB0-fold{}.pt'.format(fold))
+            torch.save(model.state_dict(), '../dacon12/data/save/EfficientNetB0-fold{}.pt'.format(fold))
             valid_best_accuracy = np.mean(valid_batch_accuracy)
         print('fold : {}\tepoch : {:02d}\ttrain_accuracy / loss : {:.5f} / {:.5f}\tvalid_accuracy / loss : {:.5f} / {:.5f}\ttime : {:.0f}'.format(fold+1, epoch+1,
                                                                                                                                               np.mean(batch_accuracy_list),
@@ -245,12 +248,12 @@ test_transform = transforms.Compose([
 
 
 # ================ Test 추론 =============================
-submission = pd.read_csv('D:/aidata/dacon12/sample_submission.csv')
+submission = pd.read_csv('../dacon12/data/sample_submission.csv')
 
 with torch.no_grad():
     for fold in range(1):
         model = EfficientNet_MultiLabel(in_channels=3).to(device)
-        model.load_state_dict(torch.load('D:/aidata/dacon12/save/EfficientNetB0-fold{}.pt'.format(fold)))
+        model.load_state_dict(torch.load('../dacon12/data/save/EfficientNetB0-fold{}.pt'.format(fold)))
         model.eval()
 
         test_dataset = MnistDataset_v2(imgs = test_imgs, transform=test_transform, train=False)
@@ -265,8 +268,14 @@ with torch.no_grad():
 
 # ==================== 제출물 생성 ====================
 submission.iloc[:,1:] = np.where(submission.values[:,1:]>=0.5, 1,0)
-submission.to_csv('D:/aidata/dacon12/sub_save/jjang_02.csv', index=False)
+submission.to_csv('../dacon12/data/save/jjang_02.csv', index=False)
 print('===== done =====')
 
 # ======================
-# kfold = 1 / epoch =1 / jjang_01.csv > dacon score: 0.6285846154
+<<<<<<< HEAD
+=======
+# kfold = 5 / epoch =10 / b3/ jjang_03.csv > dacon score: 0.8220615385
+# kfold = 5 / epoch =15 / b3/ jjang_04.csv > dacon score: 0.8252615385	
+# kfold = 3 / epoch =13 / b3/ flip뺴고 /  jjang_08.csv > dacon score:
+# kfold = 5 / epoch =20 / b3 / batch=24 / jjang_02.csv > dacon score: home ing
+>>>>>>> 6db26d747320acdd1d763fca137b980b640f83fa
