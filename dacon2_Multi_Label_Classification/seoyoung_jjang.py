@@ -122,7 +122,7 @@ class myPredictor(ClassPredictor):
 class EfficientNet_MultiLabel(nn.Module):
     def __init__(self, in_channels):
         super(EfficientNet_MultiLabel, self).__init__()
-        self.network = EfficientNet.from_pretrained('efficientnet-b0', in_channels=in_channels) # b3, b7 
+        self.network = EfficientNet.from_pretrained('efficientnet-b3', in_channels=in_channels) # b0, b3, b7 
         self.output_layer = nn.Linear(1000, 26)
 
     def forward(self, x):
@@ -156,8 +156,8 @@ for fold in range(5):
         transforms.ToTensor(),
         ])
 
-    epochs=5
-    batch_size=24        # 자신의 VRAM에 맞게 조절해야 OOM을 피할 수 있습니다.
+    epochs=12
+    batch_size=24       # 자신의 VRAM에 맞게 조절해야 OOM을 피할 수 있습니다.
     
     # Data Loader
     train_dataset = MnistDataset_v2(imgs = imgs[train_idx], labels=labels[train_idx], transform=train_transform)

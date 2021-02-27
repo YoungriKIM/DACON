@@ -86,8 +86,8 @@ transforms_test = transforms.Compose([
     )
 ])
 
-trainset = MnistDataset('../dacon12/data/train', '../dacon12/data/dirty_mnist_2nd_answer.csv', transforms_train)
-testset = MnistDataset('../dacon12/data//test', '../dacon12/data/sample_submission.csv', transforms_test)
+trainset = MnistDataset('D:/aidata/dacon12/train', 'D:/aidata/dacon12/dirty_mnist_2nd_answer.csv', transforms_train)
+testset = MnistDataset('D:/aidata/dacon12/test', 'D:/aidata/dacon12/sample_submission.csv', transforms_test)
 
 train_loader = DataLoader(trainset, batch_size=16, num_workers=6)
 test_loader = DataLoader(testset, batch_size=16, num_workers=6)
@@ -123,7 +123,7 @@ if __name__ == '__main__':
     criterion = nn.MultiLabelSoftMarginLoss()
 
     # 에포치 10주고 모델을 트레인으로 변환
-    num_epochs = 40
+    num_epochs = 38
     model.train()
 
     # 에포치 만큼 반복
@@ -155,7 +155,7 @@ if __name__ == '__main__':
 if __name__ == '__main__':
 
     # 평가 폴더를 열음
-    submit = pd.read_csv('../dacon12/data/sample_submission.csv')
+    submit = pd.read_csv('D:/aidata/dacon12/sample_submission.csv')
 
     # 이벨류 모드로 전환
     model.eval()
@@ -175,14 +175,10 @@ if __name__ == '__main__':
             outputs.long().squeeze(0).detach().cpu().numpy()
 
     # 저장함
-    submit.to_csv('../dacon12/data/save//base_03.csv', index=False)
+    submit.to_csv('D:/aidata/dacon12/sub_save/base_04.csv', index=False)
 
 
 # ==============================================
 # base_01.csv 기본 데이터로 진행 > dacon score: 0.7145538462
-<<<<<<< HEAD
 # base_02.csv  >> canny+junho > batch_size=16, num_workers=5 > dacon score: ing
-=======
-# base_02.csv  >> canny+junho > batch_size=16, num_workers=5 > dacon score: 
-# base_03.csv  >> junho > batch_size=16, num_workers=5 > dacon score: ing 하다가 멈춤 ㅎ
->>>>>>> 2326206ecc62ccff8fed5081376cefde77736339
+# base_04.csv  >> canny+junho > batch_size=16, num_workers=5 > dacon score: ing
