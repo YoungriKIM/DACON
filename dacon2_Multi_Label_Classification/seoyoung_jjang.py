@@ -154,13 +154,8 @@ for fold in range(3):
         transforms.ToTensor(),
         ])
 
-<<<<<<< HEAD
-    epochs=12
-    batch_size=24       # 자신의 VRAM에 맞게 조절해야 OOM을 피할 수 있습니다.
-=======
     epochs=20
     batch_size=24        # 자신의 VRAM에 맞게 조절해야 OOM을 피할 수 있습니다.
->>>>>>> 6db26d747320acdd1d763fca137b980b640f83fa
     
     # Data Loader
     train_dataset = MnistDataset_v2(imgs = imgs[train_idx], labels=labels[train_idx], transform=train_transform)
@@ -272,10 +267,11 @@ submission.to_csv('../dacon12/data/save/jjang_02.csv', index=False)
 print('===== done =====')
 
 # ======================
-<<<<<<< HEAD
-=======
+# kfold = 1 / epoch =1 / jjang_01.csv > dacon score: 0.6285846154
+# kfold = 5 / epoch =12 / b3 / clear img / flip 해제 /  jjang_05.csv > dacon score: 0.7736
+# kfold = 5 / epoch =12 / b3 / 원본 img / flip 적용/ 추가tta적용 /  jjang_07.csv > dacon score: 0.8215538462
+# kfold = 5 / epoch =15 / b3 / 원본 img / flip 해제 / 추가tta적용 /  jjang_09.csv > dacon score: 0.82306153​​
 # kfold = 5 / epoch =10 / b3/ jjang_03.csv > dacon score: 0.8220615385
-# kfold = 5 / epoch =15 / b3/ jjang_04.csv > dacon score: 0.8252615385	
-# kfold = 3 / epoch =13 / b3/ flip뺴고 /  jjang_08.csv > dacon score:
-# kfold = 5 / epoch =20 / b3 / batch=24 / jjang_02.csv > dacon score: home ing
->>>>>>> 6db26d747320acdd1d763fca137b980b640f83fa
+# kfold = 5 / epoch =15 / b3/ jjang_04.csv > dacon score: 0.8252615385  
+# kfold = 3 / epoch =13 / b3/ flip뺴고 /  jjang_08.csv > dacon score: 0.8185692308	​
+# kfold = 5 / epoch =20 / b3 / batch=24 / jjang_02.csv > dacon score: 0.8172153846
