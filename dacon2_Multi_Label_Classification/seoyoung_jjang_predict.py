@@ -27,11 +27,11 @@ torch.set_num_threads(1)
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 # ======================== Dacon Dataset Load ==========================
-labels_df = pd.read_csv('D:/aidata/dacon12/dirty_mnist_2nd_answer.csv')[:]
-imgs_dir = np.array(sorted(glob.glob('D:/aidata/dacon12/train/*')))[:]
+labels_df = pd.read_csv('../dacon12/data/dirty_mnist_2nd_answer.csv')[:]
+imgs_dir = np.array(sorted(glob.glob('../dacon12/data/train/*')))[:]
 labels = np.array(labels_df.values[:,1:])
 
-test_imgs_dir = np.array(sorted(glob.glob('D:/aidata/dacon12/test/*')))
+test_imgs_dir = np.array(sorted(glob.glob('../dacon12/data/test/*')))
 
 imgs=[]
 for path in tqdm(imgs_dir[:]):
@@ -243,12 +243,12 @@ test_transform = transforms.Compose([
 
 
 # ================ Test 추론 =============================
-submission = pd.read_csv('D:/aidata/dacon12/sample_submission.csv')
+submission = pd.read_csv('../dacon12/data/sample_submission.csv')
 
 with torch.no_grad():
     for fold in range(5):
         model = EfficientNet_MultiLabel(in_channels=3).to(device)
-        model.load_state_dict(torch.load('D:/aidata/dacon12/save/EfficientNetB0-fold{}.pt'.format(fold)))
+        model.load_state_dict(torch.load('../dacon12/data/save/EfficientNetB3-fold{}.pt'.format(fold)))
         model.eval()
 
         test_dataset = MnistDataset_v2(imgs = test_imgs, transform=test_transform, train=False)
@@ -262,8 +262,8 @@ with torch.no_grad():
                 submission.iloc[n*32:(n+1)*32,1:] += pred_test
 
 # ==================== 제출물 생성 ====================
-submission.iloc[:,1:] = np.where(submission.values[:,1:]>=0.5, 1,0)
-submission.to_csv('D:/aidata/dacon12/sub_save/predict_01.csv', index=False)
+submission.iloc[:,1:] = np.where(submission.values[:,1:]>=3.0, 1,0)
+submission.to_csv('../dacon12/data/save/predict_05.csv', index=False)
 print('===== done =====')
 
 # ======================
@@ -275,3 +275,10 @@ print('===== done =====')
 # kfold = 5 / epoch =15 / b3/ jjang_04.csv > dacon score: 0.8252615385  
 # kfold = 3 / epoch =13 / b3/ flip뺴고 /  jjang_08.csv > dacon score: 0.8185692308	​
 # kfold = 5 / epoch =20 / b3 / batch=24 / jjang_02.csv > dacon score: 0.8172153846
+# ======================
+# B0 5fold 0.5 / preidct_01: 0.7316	
+# B3 5fold 0.25/ preidct_02 : 0.6..?
+# 2.5 b3 / _03: 0.84
+# 2.5 b0 / _04: .
+# 3.0 b3 / _05: ing
+# 3.0 b0 / _06: .
