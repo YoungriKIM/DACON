@@ -1,0 +1,30 @@
+2021-04-11 01:18:40,039; INFO; NP.forecaster; _handle_missing_data; dropped 24 NAN row in 'y'
+2021-04-11 01:18:40,116; INFO; NP.config; set_auto_batch_epoch; Auto-set batch_size to 64
+2021-04-11 01:18:40,117; INFO; NP.config; set_auto_batch_epoch; Auto-set epochs to 61
+2021-04-11 01:18:40,179; WARNING; py.warnings; _showwarnmsg; C:\Users\Admin\anaconda3\lib\site-packages\torch\nn\modules\container.py:552: UserWarning: Setting attributes on ParameterDict is not supported.
+  warnings.warn("Setting attributes on ParameterDict is not supported.")
+
+2021-04-11 01:18:44,748; INFO; NP.utils_torch; lr_range_test; lr-range-test results: steep: 3.11E-02, min: 4.18E-01
+2021-04-11 01:18:44,749; INFO; NP.utils_torch; lr_range_test; learning rate range test selected lr: 1.76E-01
+2021-04-11 01:19:42,064; INFO; NP.forecaster; _handle_missing_data; dropped 48 NAN row in 'y'
+2021-04-11 01:19:42,076; INFO; NP.config; set_auto_batch_epoch; Auto-set batch_size to 64
+2021-04-11 01:19:42,076; INFO; NP.config; set_auto_batch_epoch; Auto-set epochs to 61
+2021-04-11 01:19:42,119; WARNING; py.warnings; _showwarnmsg; C:\Users\Admin\anaconda3\lib\site-packages\torch\nn\modules\container.py:552: UserWarning: Setting attributes on ParameterDict is not supported.
+  warnings.warn("Setting attributes on ParameterDict is not supported.")
+
+2021-04-11 01:19:46,545; INFO; NP.utils_torch; lr_range_test; lr-range-test results: steep: 2.07E-02, min: 2.79E-01
+2021-04-11 01:19:46,545; INFO; NP.utils_torch; lr_range_test; learning rate range test selected lr: 1.17E-01
+2021-04-11 01:20:43,649; INFO; NP.config; set_auto_batch_epoch; Auto-set batch_size to 64
+2021-04-11 01:20:43,649; INFO; NP.config; set_auto_batch_epoch; Auto-set epochs to 61
+2021-04-11 01:20:43,680; WARNING; py.warnings; _showwarnmsg; C:\Users\Admin\anaconda3\lib\site-packages\torch\nn\modules\container.py:552: UserWarning: Setting attributes on ParameterDict is not supported.
+  warnings.warn("Setting attributes on ParameterDict is not supported.")
+
+2021-04-11 01:20:48,198; INFO; NP.utils_torch; lr_range_test; lr-range-test results: steep: 1.74E-02, min: 2.09E-01
+2021-04-11 01:20:48,199; INFO; NP.utils_torch; lr_range_test; learning rate range test selected lr: 9.13E-02
+2021-04-11 01:21:45,815; INFO; NP.config; set_auto_batch_epoch; Auto-set batch_size to 64
+2021-04-11 01:21:45,816; INFO; NP.config; set_auto_batch_epoch; Auto-set epochs to 61
+2021-04-11 01:21:45,847; WARNING; py.warnings; _showwarnmsg; C:\Users\Admin\anaconda3\lib\site-packages\torch\nn\modules\container.py:552: UserWarning: Setting attributes on ParameterDict is not supported.
+  warnings.warn("Setting attributes on ParameterDict is not supported.")
+
+2021-04-11 01:21:50,345; INFO; NP.utils_torch; lr_range_test; lr-range-test results: steep: 2.61E-02, min: 5.26E-01
+2021-04-11 01:21:50,345; INFO; NP.utils_torch; lr_range_test; learning rate range test selected lr: 1.93E-01
