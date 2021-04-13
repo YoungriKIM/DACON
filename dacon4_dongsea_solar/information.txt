@@ -1,0 +1,25 @@
+fcst : forecast의 약어
+obs: Open Broadcaster Software(자료 가져온 출처인듯) or Office of Observations(기상관찰실)
+
+# -----------------------------------------------------------------------
+[submission 기간] dangjin_floating / dangjin_warehouse / dangjin / ulsan
+2021-02-01	1:00 ~ 23:00	44229
+~~
+2021-02-28	1:00 ~ 23:00	44256	27일
+
+2021-06-09	1:00 ~ 23:00	44357
+~~
+2021-07-08	1:00 ~ 23:00	44386	29일
+
+# -----------------------------------------------------------------------
+[energy 기간] dangjin_floating / dangjin_warehouse / dangjin / ulsan
+
+2018-03-01	1:00 ~ 23:00	43161
+~~
+2021-01-31	1:00 ~ 23:00	44228	1067일
+
+# -----------------------------------------------------------------------
+[dangjin_fcst_data 기간]
+[dangjin_obs_data 기간]
+[ulsan_fcst_data 기간]
+[ulsan_obs_data 기간]
